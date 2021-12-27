@@ -58,7 +58,7 @@
     "commit": "cz"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
+    "@commitlint/cli": "^16.0.0",
     "@commitlint/config-conventional": "^12.1.4",
     "@types/jest": "^26.0.24",
     "@types/mock-fs": "^4.13.1",
