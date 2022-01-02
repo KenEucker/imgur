@@ -1,4 +1,5 @@
 import { Readable } from 'stream';
+import { ReadStream } from 'fs';
 
 export interface AccessToken {
   accessToken: string;
@@ -134,7 +135,7 @@ export interface AccountData {
 
 export type GalleryData = Array<ImageData | AlbumData>;
 export interface Payload {
-  image?: string;
+  image?: string | ReadStream;
   base64?: string;
   type?: 'stream' | 'url' | 'base64';
   name?: string;
