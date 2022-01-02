@@ -135,7 +135,7 @@ export interface AccountData {
 
 export type GalleryData = Array<ImageData | AlbumData>;
 export interface Payload {
-  image?: string | ReadStream;
+  image?: string | ReadStream | Buffer;
   base64?: string;
   type?: 'stream' | 'url' | 'base64';
   name?: string;
