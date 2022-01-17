@@ -2,7 +2,7 @@
   "author": "Ken Eucker <keneucker@gmail.com>",
   "name": "imgur",
   "description": "Unofficial JavaScript library for Imgur",
-  "version": "2.0.4",
+  "version": "2.1.1",
   "homepage": "https://github.com/keneucker/imgur",
   "license": "MIT",
   "keywords": [
@@ -69,7 +69,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^10.0.0",
+    "dotenv": "^14.2.0",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
