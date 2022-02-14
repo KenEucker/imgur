@@ -15,7 +15,7 @@
     "url": "git://github.com/keneucker/imgur.git"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "form-data": "^4.0.0"
   },
   "engines": {
