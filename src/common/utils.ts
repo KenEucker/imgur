@@ -11,7 +11,7 @@ export function createForm(payload: string | Payload): FormData {
   }
 
   for (const [key, value] of Object.entries(payload)) {
-    const supportedUploadObjectTypes = ['base64', 'stream'];
+    const supportedUploadObjectTypes = ['base64', 'stream', 'file'];
     if (supportedUploadObjectTypes.indexOf(key) !== -1) {
       if (supportedUploadObjectTypes.indexOf(payload.type as string) !== -1) {
         form.append(key, payload);

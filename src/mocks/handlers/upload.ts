@@ -41,25 +41,27 @@ export const postHandler: Handler = (req, res, ctx) => {
   const _image = formData.get('image');
   const _stream = formData.get('stream');
   const _base64 = formData.get('base64');
+  const _video = formData.get('video');
   const _type = formData.get('type');
   const _title = formData.get('title');
   const _description = formData.get('description');
-  const image = _image ? _image.valueOf() : null;
-  const stream = _stream ? _stream.valueOf() : null;
-  const base64 = _base64 ? _base64.valueOf() : null;
-  const type = _type ? _type.valueOf() : null;
-  const title = _title ? _title.valueOf() : null;
-  const description = _description ? _description.valueOf() : null;
+  const image = _image?.valueOf();
+  const stream = _stream?.valueOf();
+  const base64 = _base64?.valueOf();
+  const video = _video?.valueOf();
+  const type = _type?.valueOf();
+  const title = _title?.valueOf();
+  const description = _description?.valueOf();
 
-  if (image === null && stream === null && base64 === null) {
+  if (!image && !stream && !base64 === !video) {
     return res(ctx.status(400), ctx.json(BadReqestErrorResponse));
   }
 
-  // type is optional when uploading a file, but reqired
+  // type is optional when uploading a video, but reqired
   // for any other type
   if (type !== null) {
     // only these types are allowed
-    if (!['stream', 'url', 'base64'].includes(type as string)) {
+    if (!['stream', 'url', 'base64', 'video'].includes(type as string)) {
       return res(ctx.status(400), ctx.json(BadReqestErrorResponse));
     }
     // if type is not specified we assume we're uploading a file.

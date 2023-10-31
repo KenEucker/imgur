@@ -8,12 +8,11 @@ export async function upload(
   payload: Payload
 ): Promise<ImgurApiResponse<ImageData>> {
   const form = createForm(payload);
-  const image = payload.image as any;
+  const image = (payload.image ?? payload.video) as any;
   const filename = typeof image === 'string' ? image : image.path ?? image.name;
   const isVideo =
-    payload.type === 'stream' &&
-    filename &&
-    (filename.indexOf('.mp4') !== -1 || filename.indexOf('.avi') !== -1);
+    (payload.type === 'stream' || payload.type === 'file') &&
+    (filename?.indexOf('.mp4') !== -1 || filename?.indexOf('.avi') !== -1);
   const url = isVideo ? UPLOAD_ENDPOINT : IMAGE_ENDPOINT;
 
   /* eslint no-async-promise-executor: 0 */
