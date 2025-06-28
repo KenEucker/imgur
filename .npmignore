@@ -5,7 +5,6 @@
 .husky
 .github
 
-jest.*.js
 tsconfig.json
 
 src

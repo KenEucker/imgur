@@ -1,4 +1,4 @@
-import { AxiosResponse } from 'axios';
+import { AxiosHeaders, AxiosResponse } from 'axios';
 import FormData from 'form-data';
 import { ImgurApiResponse, Payload } from './types';
 
@@ -36,7 +36,7 @@ export function getImgurApiResponseFromResponse(
   response: AxiosResponse
 ): ImgurApiResponse {
   let success = true;
-  let headers: Record<string, string>;
+  let headers = new AxiosHeaders(response?.headers ?? {});
   let data;
   let status = 200;
   const responseIsValid =
@@ -64,7 +64,7 @@ export function getImgurApiResponseFromResponse(
     success = false;
   } else if (responseIsSuccess) {
     status = response.data.status;
-    headers = response.headers;
+    headers = response.headers as AxiosHeaders;
     data = response.data.data.error
       ? response.data.data.error
       : response.data.data;
@@ -74,7 +74,7 @@ export function getImgurApiResponseFromResponse(
       response.data.data?.error?.code ??
       response.status ??
       response.data.status;
-    headers = response.headers;
+    headers = response.headers as AxiosHeaders;
     data = getResponseData(
       responseIsError
         ? response.data.errors ??
@@ -90,4 +90,12 @@ export function getImgurApiResponseFromResponse(
     status,
     success,
   };
+}
+
+export function hasPathOrName(obj: unknown): obj is { path?: string; name?: string } {
+  return (
+    typeof obj === 'object' &&
+    obj !== null &&
+    ('path' in obj || 'name' in obj)
+  );
 }

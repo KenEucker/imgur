@@ -10,11 +10,11 @@ test('update one image with all props', async () => {
     description: 'description',
   });
   expect(response).toMatchInlineSnapshot(`
-    Object {
+    {
       "data": true,
-      "headers": Object {
+      "headers": {
+        "content-length": "41",
         "content-type": "application/json",
-        "x-powered-by": "msw",
       },
       "status": 200,
       "success": true,
@@ -30,11 +30,11 @@ test('update one image with title only', async () => {
     title: 'new title',
   });
   expect(response).toMatchInlineSnapshot(`
-    Object {
+    {
       "data": true,
-      "headers": Object {
+      "headers": {
+        "content-length": "41",
         "content-type": "application/json",
-        "x-powered-by": "msw",
       },
       "status": 200,
       "success": true,
@@ -48,7 +48,7 @@ test('update one image without title or description', async () => {
   const response = updateImage(client, {
     imageHash: 'abc123',
   });
-  expect(response).rejects.toThrowErrorMatchingInlineSnapshot(
-    `"Update requires a title and/or description"`
+  await expect(response).rejects.toThrowErrorMatchingInlineSnapshot(
+    `[Error: Update requires a title and/or description]`
   );
 });

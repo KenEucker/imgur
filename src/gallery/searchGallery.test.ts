@@ -43,13 +43,13 @@ test('returns an gallery response', async () => {
     query: 'wallstreetbets',
   });
   expect(response).toMatchInlineSnapshot(`
-    Object {
-      "data": Array [
-        Object {
+    {
+      "data": [
+        {
           "description": "gallery-description",
           "id": "ans7sd",
-          "images": Array [
-            Object {
+          "images": [
+            {
               "description": null,
               "id": "4yMKKLTz",
               "link": "https://i.imgur.com/4yMKKLTz.jpg",
@@ -60,9 +60,9 @@ test('returns an gallery response', async () => {
           "title": "gallery-title",
         },
       ],
-      "headers": Object {
+      "headers": {
+        "content-length": "253",
         "content-type": "application/json",
-        "x-powered-by": "msw",
       },
       "status": 200,
       "success": true,

@@ -1,5 +1,5 @@
 import { ImgurClient } from '../client';
-import { createForm, getImgurApiResponseFromResponse } from '../common/utils';
+import { createForm, getImgurApiResponseFromResponse, hasPathOrName } from '../common/utils';
 import { Payload, ImgurApiResponse, ImageData } from '../common/types';
 import { UPLOAD_ENDPOINT, IMAGE_ENDPOINT } from '../common/endpoints';
 
@@ -8,8 +8,13 @@ export async function upload(
   payload: Payload
 ): Promise<ImgurApiResponse<ImageData>> {
   const form = createForm(payload);
-  const image = payload.image as any;
-  const filename = typeof image === 'string' ? image : image.path ?? image.name;
+  const image = payload.image;
+  const filename =
+    typeof image === 'string'
+      ? image
+      : hasPathOrName(image)
+      ? image.path ?? image.name
+      : '';
   const isVideo =
     payload.type === 'stream' &&
     filename &&

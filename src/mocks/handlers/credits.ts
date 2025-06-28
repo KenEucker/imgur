@@ -1,4 +1,4 @@
-import { Handler } from './';
+import { HttpResponse } from 'msw';
 
 const AuthenticationRequiredResponse = {
   data: {
@@ -22,10 +22,12 @@ const SuccessResponse = {
   status: 200,
 };
 
-export const getHandler: Handler = (req, res, ctx) => {
-  if (!req.headers.has('authorization')) {
-    return res(ctx.status(401), ctx.json(AuthenticationRequiredResponse));
+export const getHandler = (request) => {
+  const authHeader = request.headers.get('authorization');
+
+  if (!authHeader) {
+    return HttpResponse.json(AuthenticationRequiredResponse, { status: 401 });
   }
 
-  return res(ctx.json(SuccessResponse));
+  return HttpResponse.json(SuccessResponse, { status: 200 });
 };

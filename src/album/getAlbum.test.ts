@@ -6,13 +6,13 @@ test('returns an album response', async () => {
   const client = new ImgurClient({ accessToken });
   const response = await getAlbum(client, 'XtMnA');
   expect(response).toMatchInlineSnapshot(`
-    Object {
-      "data": Object {
+    {
+      "data": {
         "description": "Dank memes",
         "id": "XtMnA",
         "image_count": 22,
-        "images": Array [
-          Object {
+        "images": [
+          {
             "datetime": 1316635799,
             "description": null,
             "id": "2dAns",
@@ -20,7 +20,7 @@ test('returns an album response', async () => {
             "title": null,
             "type": "image/gif",
           },
-          Object {
+          {
             "datetime": 1316635800,
             "description": null,
             "id": "snAd2",
@@ -31,9 +31,9 @@ test('returns an album response', async () => {
         ],
         "title": "Meme album",
       },
-      "headers": Object {
+      "headers": {
+        "content-length": "382",
         "content-type": "application/json",
-        "x-powered-by": "msw",
       },
       "status": 200,
       "success": true,

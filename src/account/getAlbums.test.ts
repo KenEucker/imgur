@@ -7,13 +7,13 @@ test.todo('returns an array of albums response');
 //   const client = new ImgurClient({ accessToken });
 //   const response = await getAlbums(client, 'node-imgur');
 //   expect(response).toMatchInlineSnapshot(`
-//     Object {
-//       "data": Object {
+//     {
+//       "data": {
 //         "description": "Dank memes",
 //         "id": "XtMnA",
 //         "image_count": 22,
-//         "images": Array [
-//           Object {
+//         "images": [
+//           {
 //             "datetime": 1316635799,
 //             "description": null,
 //             "id": "2dAns",
@@ -21,7 +21,7 @@ test.todo('returns an array of albums response');
 //             "title": null,
 //             "type": "image/gif",
 //           },
-//           Object {
+//           {
 //             "datetime": 1316635800,
 //             "description": null,
 //             "id": "snAd2",

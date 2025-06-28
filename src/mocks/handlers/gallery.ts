@@ -1,7 +1,6 @@
-import { Handler } from './';
+import { HttpResponse } from 'msw';
 
-export const getHandler: Handler = (_req, res, ctx) => {
-  // const { section, sort, window, page } = req.params;
+export const getHandler = () => {
   const response = {
     data: [
       {
@@ -22,5 +21,6 @@ export const getHandler: Handler = (_req, res, ctx) => {
     success: true,
     status: 200,
   };
-  return res(ctx.json(response));
+
+  return HttpResponse.json(response, { status: 200 });
 };
