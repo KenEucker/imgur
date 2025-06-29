@@ -77,10 +77,10 @@ export function getImgurApiResponseFromResponse(
     headers = response.headers as AxiosHeaders;
     data = getResponseData(
       responseIsError
-        ? response.data.errors ??
+        ? (response.data.errors ??
             response.data.data.error.message ??
-            response.data.data.error
-        : response.data.data ?? response.data.message ?? response.data
+            response.data.data.error)
+        : (response.data.data ?? response.data.message ?? response.data)
     );
   }
 
@@ -92,10 +92,10 @@ export function getImgurApiResponseFromResponse(
   };
 }
 
-export function hasPathOrName(obj: unknown): obj is { path?: string; name?: string } {
+export function hasPathOrName(
+  obj: unknown
+): obj is { path?: string; name?: string } {
   return (
-    typeof obj === 'object' &&
-    obj !== null &&
-    ('path' in obj || 'name' in obj)
+    typeof obj === 'object' && obj !== null && ('path' in obj || 'name' in obj)
   );
 }

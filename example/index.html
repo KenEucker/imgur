@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta type="title" content="Imgur API test">
     <title>Imgur API test</title>
-    <script src="../dist/imgur.js"></script>
+    <script src="imgur.umd.js"></script>
     <script src="env.js"></script>
 
 </head>
@@ -52,7 +52,7 @@
         }
 
         const init = () => {
-            client = new imgur({
+            client = new ImgurClient({
                 refreshToken: env.REFRESH_TOKEN,
                 accessToken: env.ACCESS_TOKEN,
                 clientSecret: env.CLIENT_SECRET,

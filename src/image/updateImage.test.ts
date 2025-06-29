@@ -1,5 +1,6 @@
 import { ImgurClient } from '../client';
 import { updateImage } from './updateImage';
+import { test, expect } from 'vitest'
 
 test('update one image with all props', async () => {
   const accessToken = 'abc123';

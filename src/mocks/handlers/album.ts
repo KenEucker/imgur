@@ -46,6 +46,6 @@ export const getHandler = (request) => {
   if (!authHeader) {
     return HttpResponse.json(AuthenticationRequiredResponse, { status: 401 });
   }
-  
+
   return HttpResponse.json(SuccessResponse, { status: 200 });
 };

@@ -1,5 +1,6 @@
 import { ImgurClient } from '../client';
 import { getAlbum } from './getAlbum';
+import { test, expect } from 'vitest'
 
 test('returns an album response', async () => {
   const accessToken = 'abc123';

@@ -1,5 +1,6 @@
 import { ImgurClient } from '../client';
 import { getGallery, GalleryOptions, constructGalleryUrl } from './getGallery';
+import { test, expect } from 'vitest'
 
 test('constructGalleryUrl', () => {
   expect(

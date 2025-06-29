@@ -46,7 +46,7 @@ export class ImgurClient extends EventEmitter {
     super();
 
     this.credentials.rapidApiHost = credentials.rapidApiKey?.length
-      ? credentials.rapidApiHost ?? 'imgur-apiv3.p.rapidapi.com'
+      ? (credentials.rapidApiHost ?? 'imgur-apiv3.p.rapidapi.com')
       : credentials.rapidApiHost;
     const headers =
       typeof window !== 'undefined'

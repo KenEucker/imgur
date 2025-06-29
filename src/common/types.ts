@@ -157,7 +157,7 @@ export interface ImgurApiResponse<
     | ImageData
     | GalleryData
     | AlbumData
-    | AccountData
+    | AccountData,
 > {
   headers: Record<string, string>;
   data: T;

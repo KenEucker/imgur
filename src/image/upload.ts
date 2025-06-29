@@ -1,5 +1,9 @@
 import { ImgurClient } from '../client';
-import { createForm, getImgurApiResponseFromResponse, hasPathOrName } from '../common/utils';
+import {
+  createForm,
+  getImgurApiResponseFromResponse,
+  hasPathOrName,
+} from '../common/utils';
 import { Payload, ImgurApiResponse, ImageData } from '../common/types';
 import { UPLOAD_ENDPOINT, IMAGE_ENDPOINT } from '../common/endpoints';
 
@@ -13,8 +17,8 @@ export async function upload(
     typeof image === 'string'
       ? image
       : hasPathOrName(image)
-      ? image.path ?? image.name
-      : '';
+        ? (image.path ?? image.name)
+        : '';
   const isVideo =
     payload.type === 'stream' &&
     filename &&

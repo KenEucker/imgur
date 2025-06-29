@@ -1,3 +1,5 @@
+import { describe, test, expect } from 'vitest'
+
 // import { ImgurClient } from '../client';
 // import { upload } from './upload';
 // import { PassThrough } from 'stream';

@@ -5,14 +5,14 @@
   "version": "2.4.3",
   "homepage": "https://github.com/keneucker/imgur",
   "license": "AGPL-3.0-or-later",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "type": "module",
+  "main": "./dist/imgur.cjs",
+  "module": "./dist/imgur.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/imgur.js",
+      "require": "./dist/imgur.cjs"
     }
   },
   "keywords": [
@@ -33,7 +33,7 @@
     "node": ">=14"
   },
   "files": [
-    "dist/**/*",
+    "dist",
     "package.json",
     "LICENSE.md",
     "README.md"
@@ -42,9 +42,10 @@
     "test": "vitest run --reporter=verbose",
     "test:dev": "vitest",
     "test:ci": "vitest run --coverage",
-    "run:dev": "node example/index",
+    "run:dev": "node example/index.cjs",
+    "run:browser": "vite example",
     "build:dev": "npm run build -- --watch",
-    "build": "vite build",
+    "build": "vite build && vite build --config vite.umd.config.ts",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist _site test/src/**/*.js test/src/**/*.d.ts",
     "prepare": "husky install",
@@ -59,7 +60,6 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "@types/jest": "^30.0.0",
     "@types/mock-fs": "^4.13.4",
     "@types/node": "^24.0.7",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
@@ -84,12 +84,13 @@
     "undici": "^7.11.0",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-static-copy": "^3.1.0",
     "vitest": "^3.2.4"
   },
   "lint-staged": {
     "*.ts": [
       "eslint . --fix",
-      "vitest run --bail"
+      "vitest run"
     ],
     "*.{js,css,md,yml,yaml,json}": "prettier --write"
   },

@@ -1,28 +1,25 @@
-import * as path from 'path';
-import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
+import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
+import path from 'path'
 
 export default defineConfig({
   plugins: [dts()],
   build: {
-    ssr: true,
+    target: 'node16',
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'ImgurClient',
+      formats: ['es', 'cjs'],
     },
+    outDir: 'dist',
+    emptyOutDir: true,
     rollupOptions: {
-      plugins: [nodePolyfills()],
+      external: ['axios', 'form-data', 'events'],
       output: {
         exports: 'named',
         globals: {
-          axios: 'axios',
-          'axios-cache-adapter': 'axiosCacheAdapter',
-          events: 'events',
-          'form-data': 'formData',
-          'whatwg-url': 'whatwgUrl',
+          // list any external deps you expect the consumer to provide
         },
       },
     },
   },
-});
+})

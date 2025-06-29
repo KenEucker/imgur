@@ -1,6 +1,7 @@
 test.todo('returns an account response');
 // import { ImgurClient } from '../client';
 // import { getAccount } from './getAccount';
+// import { test, expect } from 'vitest'
 
 // test('returns an account response', async () => {
 //   const accessToken = 'abc123';

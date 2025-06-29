@@ -1,5 +1,6 @@
 import { ImgurClient } from '../client';
 import { favoriteImage } from './favoriteImage';
+import { test, expect } from 'vitest'
 
 test('favorite works successfully', async () => {
   const accessToken = 'abc123';
