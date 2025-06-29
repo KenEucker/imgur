@@ -31,7 +31,12 @@ import type {
 
 const USERAGENT = 'imgur (https://github.com/keneucker/imgur)';
 
-import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  AxiosRequestConfig,
+  InternalAxiosRequestConfig,
+} from 'axios';
 export type { Credentials as ImgurCredentials, ImgurApiResponse };
 export class ImgurClient extends EventEmitter {
   private plainFetcher: AxiosInstance;
@@ -41,7 +46,7 @@ export class ImgurClient extends EventEmitter {
     super();
 
     this.credentials.rapidApiHost = credentials.rapidApiKey?.length
-      ? credentials.rapidApiHost ?? 'imgur-apiv3.p.rapidapi.com'
+      ? (credentials.rapidApiHost ?? 'imgur-apiv3.p.rapidapi.com')
       : credentials.rapidApiHost;
     const headers =
       typeof window !== 'undefined'
@@ -63,8 +68,7 @@ export class ImgurClient extends EventEmitter {
       responseType: 'json',
     });
     this.fetcher.interceptors.request.use(
-      async (config: AxiosRequestConfig) => {
-        config.headers = config.headers ? config.headers : {};
+      async (config: InternalAxiosRequestConfig) => {
         config.headers.authorization = await getAuthorizationHeader(this);
 
         if (credentials.rapidApiKey?.length) {

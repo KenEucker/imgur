@@ -1,10 +1,4 @@
-// /**
-//  * @jest-environment jsdom
-//  *
-//  * msw's parseMultipartData method calls `new File(..)` which breaks when jest-environment is set to `node`,
-//  * because `File` is only available in browsers. The current workaround is to set these upload tests to
-//  * run in the `jsdom` environment so that `File` is available.
-//  */
+import { describe, test, expect } from 'vitest';
 
 // import { ImgurClient } from '../client';
 // import { upload } from './upload';
@@ -44,8 +38,8 @@ describe('test imgur uploads', () => {
 //       type: 'url',
 //     });
 //     expect(response).toMatchInlineSnapshot(`
-//       Object {
-//         "data": Object {
+//       {
+//         "data": {
 //           "deletehash": "jyby9KJ",
 //           "description": null,
 //           "id": "JK9ybyj",
@@ -66,9 +60,9 @@ describe('test imgur uploads', () => {
 //       { image: 'https://i.imgur.com/JK9ybyj.jpg' },
 //     ]);
 //     expect(response).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "data": Object {
+//       [
+//         {
+//           "data": {
 //             "deletehash": "jyby9KJ",
 //             "description": null,
 //             "id": "JK9ybyj",
@@ -78,8 +72,8 @@ describe('test imgur uploads', () => {
 //           "status": 200,
 //           "success": true,
 //         },
-//         Object {
-//           "data": Object {
+//         {
+//           "data": {
 //             "deletehash": "jyby9KJ",
 //             "description": null,
 //             "id": "JK9ybyj",
@@ -102,8 +96,8 @@ describe('test imgur uploads', () => {
 //       description: 'the dankiest of dank memes',
 //     });
 //     expect(response).toMatchInlineSnapshot(`
-//       Object {
-//         "data": Object {
+//       {
+//         "data": {
 //           "deletehash": "jyby9KJ",
 //           "description": null,
 //           "id": "JK9ybyj",
@@ -134,9 +128,9 @@ describe('test imgur uploads', () => {
 //       },
 //     ]);
 //     expect(response).toMatchInlineSnapshot(`
-//       Array [
-//         Object {
-//           "data": Object {
+//       [
+//         {
+//           "data": {
 //             "deletehash": "jyby9KJ",
 //             "description": null,
 //             "id": "JK9ybyj",
@@ -146,8 +140,8 @@ describe('test imgur uploads', () => {
 //           "status": 200,
 //           "success": true,
 //         },
-//         Object {
-//           "data": Object {
+//         {
+//           "data": {
 //             "deletehash": "jyby9KJ",
 //             "description": null,
 //             "id": "JK9ybyj",
@@ -171,8 +165,8 @@ describe('test imgur uploads', () => {
 //       disable_audio: '1',
 //     });
 //     expect(response).toMatchInlineSnapshot(`
-//       Object {
-//         "data": Object {
+//       {
+//         "data": {
 //           "deletehash": "jyby9KJ",
 //           "description": null,
 //           "id": "JK9ybyj",
@@ -194,8 +188,8 @@ describe('test imgur uploads', () => {
 //       disable_audio: '1',
 //     });
 //     expect(response).toMatchInlineSnapshot(`
-//       Object {
-//         "data": Object {
+//       {
+//         "data": {
 //           "deletehash": "jyby9KJ",
 //           "description": null,
 //           "id": "JK9ybyj",

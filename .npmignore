@@ -2,10 +2,8 @@
 .eslintrc.js
 .prettierrc.json
 .releaserc.json
-.husky
 .github
 
-jest.*.js
 tsconfig.json
 
 src

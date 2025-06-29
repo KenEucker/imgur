@@ -1,11 +1,11 @@
-import { Handler } from './';
+import { HttpResponse } from 'msw';
 
-const BadReqestErrorResponse = {
+const BadRequestErrorResponse = {
   status: 400,
   success: false,
   data: {
-    error: 'Bad Reqest',
-    reqest: '/3/upload',
+    error: 'Bad Request',
+    request: '/3/upload',
     method: 'POST',
   },
 };
@@ -36,45 +36,29 @@ function createResponse({
   };
 }
 
-export const postHandler: Handler = (req, res, ctx) => {
-  const formData = req.body as FormData;
-  const _image = formData.get('image');
-  const _stream = formData.get('stream');
-  const _base64 = formData.get('base64');
-  const _type = formData.get('type');
-  const _title = formData.get('title');
-  const _description = formData.get('description');
-  const image = _image ? _image.valueOf() : null;
-  const stream = _stream ? _stream.valueOf() : null;
-  const base64 = _base64 ? _base64.valueOf() : null;
-  const type = _type ? _type.valueOf() : null;
-  const title = _title ? _title.valueOf() : null;
-  const description = _description ? _description.valueOf() : null;
+export const postHandler = async (request) => {
+  const formData = await request.formData();
+
+  const image = formData.get('image')?.valueOf() ?? null;
+  const stream = formData.get('stream')?.valueOf() ?? null;
+  const base64 = formData.get('base64')?.valueOf() ?? null;
+  const type = formData.get('type')?.valueOf() ?? null;
+  const title = formData.get('title')?.valueOf() ?? null;
+  const description = formData.get('description')?.valueOf() ?? null;
 
   if (image === null && stream === null && base64 === null) {
-    return res(ctx.status(400), ctx.json(BadReqestErrorResponse));
+    return HttpResponse.json(BadRequestErrorResponse, { status: 400 });
   }
 
-  // type is optional when uploading a file, but reqired
-  // for any other type
-  if (type !== null) {
-    // only these types are allowed
-    if (!['stream', 'url', 'base64'].includes(type as string)) {
-      return res(ctx.status(400), ctx.json(BadReqestErrorResponse));
-    }
-    // if type is not specified we assume we're uploading a file.
-    // but we need to make sure a file was sent in the image field
+  if (type !== null && !['stream', 'url', 'base64'].includes(type as string)) {
+    return HttpResponse.json(BadRequestErrorResponse, { status: 400 });
   }
-  // else if (typeof image !== 'object') {
-  //   return res(ctx.status(400), ctx.json(BadReqestErrorResponse));
-  // }
 
-  return res(
-    ctx.json(
-      createResponse({
-        title: title as string,
-        description: description as string,
-      })
-    )
+  return HttpResponse.json(
+    createResponse({
+      title: title as string,
+      description: description as string,
+    }),
+    { status: 200 }
   );
 };

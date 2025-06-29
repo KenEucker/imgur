@@ -6,7 +6,7 @@ Thanks for taking the time to contribute!
 
 ## Testing
 
-We are using the [Jest][jest] framework for testing. Imgur API mocking is configured via [msw][msw]. This makes it simple to mock API responses. Simply add a new handler for an endpoint to `mocks/handlers.js` and that's it. These mocks are automatically configured to work for all new and existing tests.
+We are using the [Vitest][vitest] framework for testing. Imgur API mocking is configured via [msw][msw]. This makes it simple to mock API responses. Simply add a new handler for an endpoint to `mocks/handlers.js` and that's it. These mocks are automatically configured to work for all new and existing tests.
 
 Here's an example that mocks a response when making a `POST` request to `https://api.imgur.com/3/image`:
 
@@ -45,7 +45,7 @@ If you prefer not to install the `commitizen` command globally, alternatively yo
 
 - Prettier is ran and applied automatically as part of a precommit hook, so you don't have to worry about semicolons or trailing commas
 
-[jest]: https://jestjs.io/
+[vitest]: https://vitest.dev/
 [msw]: https://mswjs.io/
 [commitizen]: https://github.com/commitizen/cz-cli
 [conventional commits]: https://www.conventionalcommits.org/

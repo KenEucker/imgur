@@ -1,19 +1,20 @@
 test.todo('returns an account response');
 // import { ImgurClient } from '../client';
 // import { getAccount } from './getAccount';
+// import { test, expect } from 'vitest'
 
 // test('returns an account response', async () => {
 //   const accessToken = 'abc123';
 //   const client = new ImgurClient({ accessToken });
 //   const response = await getAccount(client, 'XtMnA');
 //   expect(response).toMatchInlineSnapshot(`
-//     Object {
-//       "data": Object {
+//     {
+//       "data": {
 //         "description": "Dank memes",
 //         "id": "XtMnA",
 //         "image_count": 22,
-//         "images": Array [
-//           Object {
+//         "images": [
+//           {
 //             "datetime": 1316635799,
 //             "description": null,
 //             "id": "2dAns",
@@ -21,7 +22,7 @@ test.todo('returns an account response');
 //             "title": null,
 //             "type": "image/gif",
 //           },
-//           Object {
+//           {
 //             "datetime": 1316635800,
 //             "description": null,
 //             "id": "snAd2",

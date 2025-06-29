@@ -1,4 +1,4 @@
-import { Handler } from './';
+import { HttpResponse } from 'msw';
 
 const RequiredFieldErrorResponse = (method: string) => {
   return {
@@ -26,55 +26,62 @@ function createRedirectUrl(username: string) {
   return `https://somedomain.com#access_token=123accesstoken456&expires_in=315360000&token_type=bearer&refresh_token=123refrestoken456&account_username=${username}&account_id=123456`;
 }
 
-export const postHandler: Handler = (req, res, ctx) => {
-  const clientId = req.url.searchParams.get('client_id');
-  const responseType = req.url.searchParams.get('response_type');
+export const postHandler = async (request) => {
+  const url = new URL(request.url);
+  const clientId = url.searchParams.get('client_id');
+  const responseType = url.searchParams.get('response_type');
 
   if (!(clientId && responseType)) {
-    return res(ctx.status(400), ctx.json(RequiredFieldErrorResponse('POST')));
+    return HttpResponse.json(RequiredFieldErrorResponse('POST'), {
+      status: 400,
+    });
   }
 
-  /* eslint @typescript-eslint/no-explicit-any: 0 */
-  const { username, password, allow } = req.body as any;
+  const body = await request.json();
+  const { username, password, allow } = body;
 
   if (!(username && password && allow)) {
-    return res(ctx.status(403), ctx.json(UnauthorizedErrorResponse));
+    return HttpResponse.json(UnauthorizedErrorResponse, { status: 403 });
   }
 
   const redirectUrl = createRedirectUrl(username);
-  return res(
-    ctx.status(200),
-    ctx.set('Location', redirectUrl),
-    ctx.cookie('authorize_token', allow)
-  );
+
+  return new HttpResponse(null, {
+    status: 200,
+    headers: {
+      Location: redirectUrl,
+      'Set-Cookie': `authorize_token=${allow}; Path=/oauth2; Domain=.api.imgur.com; Secure; HttpOnly`,
+    },
+  });
 };
 
-export const getHandler: Handler = (req, res, ctx) => {
-  const clientId = req.url.searchParams.get('client_id');
-  const responseType = req.url.searchParams.get('response_type');
+export const getHandler = (request) => {
+  const url = new URL(request.url);
+  const clientId = url.searchParams.get('client_id');
+  const responseType = url.searchParams.get('response_type');
 
   if (!(clientId && responseType)) {
-    return res(ctx.status(400), ctx.json(RequiredFieldErrorResponse('GET')));
+    return HttpResponse.json(RequiredFieldErrorResponse('GET'), {
+      status: 400,
+    });
   }
 
   const mockAuthorizeToken = 'abcxyz';
   const html = `
-      <html>
-        <form method="post" action="">
-          <input type="text" name="username" id="username">
-          <input type="password" name="password" id="password">
-          <button type="submit" name="allow" value="${mockAuthorizeToken}"></button>
-        </form>
-      </html>
-      `;
-  return res(
-    ctx.cookie('authorize_token', mockAuthorizeToken, {
-      path: '/oauth2',
-      domain: '.api.imgur.com',
-      secure: true,
-      httpOnly: true,
-    }),
-    ctx.status(200),
-    ctx.body(html)
-  );
+    <html>
+      <form method="post" action="">
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="password">
+        <button type="submit" name="allow" value="${mockAuthorizeToken}"></button>
+      </form>
+    </html>
+  `;
+
+  return new HttpResponse(html, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html',
+      'Set-Cookie': `authorize_token=${mockAuthorizeToken}; Path=/oauth2; Domain=.api.imgur.com; Secure; HttpOnly`,
+    },
+  });
 };

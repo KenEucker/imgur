@@ -1,4 +1,4 @@
-import { Handler } from './';
+import { HttpResponse } from 'msw';
 
 const SuccessResponse = {
   data: true,
@@ -12,8 +12,9 @@ const FavoriteSuccessResponse = {
   status: 200,
 };
 
-export const getHandler: Handler = (req, res, ctx) => {
-  const { id } = req.params;
+export const getHandler = (request) => {
+  const { id } = request.params;
+
   const response = {
     data: {
       id,
@@ -23,17 +24,18 @@ export const getHandler: Handler = (req, res, ctx) => {
     success: true,
     status: 200,
   };
-  return res(ctx.json(response));
+
+  return HttpResponse.json(response, { status: 200 });
 };
 
-export const postHandler: Handler = (_req, res, ctx) => {
-  return res(ctx.json(SuccessResponse));
+export const postHandler = () => {
+  return HttpResponse.json(SuccessResponse, { status: 200 });
 };
 
-export const deleteHandler: Handler = (_req, res, ctx) => {
-  return res(ctx.json(SuccessResponse));
+export const deleteHandler = () => {
+  return HttpResponse.json(SuccessResponse, { status: 200 });
 };
 
-export const postFavoriteHandler: Handler = (_req, res, ctx) => {
-  return res(ctx.json(FavoriteSuccessResponse));
+export const postFavoriteHandler = () => {
+  return HttpResponse.json(FavoriteSuccessResponse, { status: 200 });
 };
