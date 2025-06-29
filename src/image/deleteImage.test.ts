@@ -1,6 +1,6 @@
 import { ImgurClient } from '../client';
 import { deleteImage } from './deleteImage';
-import { test, expect } from 'vitest'
+import { test, expect } from 'vitest';
 
 test('delete works successfully', async () => {
   const accessToken = 'abc123';

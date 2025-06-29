@@ -1,4 +1,4 @@
-import { test } from 'vitest'
+import { test } from 'vitest';
 
 test.todo('returns an array of album ids response');
 // import { ImgurClient } from '../client';
