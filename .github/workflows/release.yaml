@@ -35,5 +35,8 @@ jobs:
       - name: Run tests
         run: npm test
       
+      - name: Semantic Release Bugfix
+        run: git config --global url."https://github.com/".insteadOf "git://github.com/"   
+      
       - name: Release
         run: npx semantic-release
