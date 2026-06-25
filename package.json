@@ -1,6 +1,6 @@
 {
   "author": "Ken Eucker <keneucker@gmail.com>",
-  "name": "@keneucker/imgur",
+  "name": "imgur",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/",
