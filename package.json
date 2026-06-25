@@ -2,7 +2,7 @@
   "author": "Ken Eucker <keneucker@gmail.com>",
   "name": "imgur",
   "description": "Unofficial JavaScript library for Imgur",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "homepage": "https://github.com/keneucker/imgur",
   "license": "AGPL-3.0-or-later",
   "type": "module",
@@ -31,7 +31,7 @@
     "whatwg-url": "^14.2.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=22"
   },
   "files": [
     "dist",
@@ -77,7 +77,7 @@
     "msw": "^2.10.2",
     "prettier": "^3.6.2",
     "rollup-plugin-polyfill-node": "^0.13.0",
-    "semantic-release": "^24.2.5",
+    "semantic-release": "^25.0.5",
     "ts-loader": "^9.5.2",
     "typescript": "^5.8.3",
     "undici": "^7.11.0",
