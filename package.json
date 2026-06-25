@@ -1,6 +1,11 @@
 {
   "author": "Ken Eucker <keneucker@gmail.com>",
-  "name": "imgur",
+  "name": "@keneucker/imgur",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "provenance": true
+  }
   "description": "Unofficial JavaScript library for Imgur",
   "version": "2.5.1",
   "homepage": "https://github.com/keneucker/imgur",
