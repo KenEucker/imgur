@@ -7,7 +7,7 @@
     "provenance": true
   },
   "description": "Unofficial JavaScript library for Imgur",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "homepage": "https://github.com/keneucker/imgur",
   "license": "AGPL-3.0-or-later",
   "type": "module",
