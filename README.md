@@ -22,10 +22,6 @@ npm install imgur
 
 ## Usage
 
-### Migrating to version 2
-
-Version 2 of the imgur api drops automatic support for filesystem usage. For uploading files from a filesystem, please see the examples using `createReadStream`.
-
 ### Import and instantiate with credentials:
 
 ```ts
